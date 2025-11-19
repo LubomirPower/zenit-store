@@ -4,8 +4,307 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Зеніт — Оптика та Техніка</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #1a2b3c;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .logo-icon {
+            background-color: #e63946;
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #e63946;
+        }
+
+        .btn-primary {
+            background-color: #e63946;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            background-color: #c1121f;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1605806669365-59185e5367b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #1a2b3c;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #6c757d;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-content {
+            padding: 20px;
+            position: relative;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background-color: #e63946;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .product-badge.premium {
+            background-color: #ffd700;
+            color: #1a2b3c;
+        }
+
+        .product-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #1a2b3c;
+        }
+
+        .product-description {
+            color: #6c757d;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .product-specs {
+            margin-bottom: 15px;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .spec-value {
+            font-weight: bold;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #1a2b3c;
+            margin-bottom: 15px;
+        }
+
+        .btn-buy {
+            background-color: #1a2b3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-buy:hover {
+            background-color: #e63946;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1a2b3c;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #e63946;
+        }
+
+        .copyright {
+            color: #adb5bd;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -20,8 +319,7 @@
                     <a href="#sights">Приціли</a>
                     <a href="#thermal">Тепловізори</a>
                     <a href="#night-vision">Нічне бачення</a>
-                    <a href="#phones">Телефони</a>
-                    <a href="#accessories">Аксесуари</a>
+                    <a href="#binoculars">Біноклі</a>
                     <a href="#contacts" class="btn-primary">Контакти</a>
                 </div>
             </nav>
@@ -32,7 +330,7 @@
     <section class="hero">
         <div class="container">
             <h1 class="hero-title">Зеніт — Оптика та Техніка</h1>
-            <p class="hero-subtitle">Спеціалізована оптика, смартфони та аксесуари. Професійне обладнання та сучасна техніка</p>
+            <p class="hero-subtitle">Спеціалізована оптика для мисливства, спорту та професійного використання. Висока якість та надійність</p>
         </div>
     </section>
 
@@ -43,10 +341,10 @@
             <p class="section-subtitle">Високоякісні приціли для мисливської та спортивної зброї</p>
             
             <div class="products-grid">
-                <!-- Vortex -->
+                <!-- Product 1 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Vortex Optics Crossfire II">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vortex Optics Crossfire II">
                     </div>
                     <div class="product-content">
                         <span class="product-badge">ХІТ</span>
@@ -67,13 +365,528 @@
                     </div>
                 </div>
 
-                <!-- Додайте інші товари тут -->
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1629991838105-9e9664290f1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Leupold VX-Freedom">
+                    </div>
+                    <div class="product-content">
+                        <span class="product-badge">НОВИНКА</span>
+                        <h3 class="product-title">Leupold VX-Freedom</h3>
+                        <p class="product-description">Приціл 3-9x40 з покращеною світлопроникністю та захистом від туману</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Збільшення:</span>
+                                <span class="spec-value">3-9x</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Об'єктив:</span>
+                                <span class="spec-value">40 мм</span>
+                            </div>
+                        </div>
+                        <div class="product-price">15 800 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1598188247746-2b7a4d66c32b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nikon ProStaff P3">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Nikon ProStaff P3</h3>
+                        <p class="product-description">Приціл 3-9x40 з системою швидкої фокусування та захистом від вологи</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Збільшення:</span>
+                                <span class="spec-value">3-9x</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Об'єктив:</span>
+                                <span class="spec-value">40 мм</span>
+                            </div>
+                        </div>
+                        <div class="product-price">10 200 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1576797980898-2d57d7c96c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bushnell Trophy Xtreme">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Bushnell Trophy Xtreme</h3>
+                        <p class="product-description">Приціл 4-16x44 з аргоновим заповненням та захистом від запотьовування</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Збільшення:</span>
+                                <span class="spec-value">4-16x</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Об'єктив:</span>
+                                <span class="spec-value">44 мм</span>
+                            </div>
+                        </div>
+                        <div class="product-price">13 750 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Burris Fullfield II">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Burris Fullfield II</h3>
+                        <p class="product-description">Приціл 3-9x40 з балістичною сіткою та покриттям для покращеної світлопроникності</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Збільшення:</span>
+                                <span class="spec-value">3-9x</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Об'єктив:</span>
+                                <span class="spec-value">40 мм</span>
+                            </div>
+                        </div>
+                        <div class="product-price">11 900 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1576797980898-2d57d7c96c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sig Sauer Whiskey3">
+                    </div>
+                    <div class="product-content">
+                        <span class="product-badge">АКЦІЯ</span>
+                        <h3 class="product-title">Sig Sauer Whiskey3</h3>
+                        <p class="product-description">Приціл 3-9x40 з системою швидкого фокусування та водостійким корпусом</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Збільшення:</span>
+                                <span class="spec-value">3-9x</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Об'єктив:</span>
+                                <span class="spec-value">40 мм</span>
+                            </div>
+                        </div>
+                        <div class="product-price">14 300 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Додайте інші секції (телефони, аксесуари, контакти) -->
+    <!-- Thermal Scopes -->
+    <section id="thermal" class="section" style="background-color: #f1f3f5;">
+        <div class="container">
+            <h2 class="section-title">Тепловізори</h2>
+            <p class="section-subtitle">Сучасні тепловізійні пристрої для спостереження та прицілювання в будь-яких умовах</p>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pulsar Thermion 2">
+                    </div>
+                    <div class="product-content">
+                        <span class="product-badge premium">ПРЕМІУМ</span>
+                        <h3 class="product-title">Pulsar Thermion 2</h3>
+                        <p class="product-description">Тепловізійний приціл з високою роздільною здатністю та далекомірною сіткою</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Роздільність:</span>
+                                <span class="spec-value">640x480</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Дальність:</span>
+                                <span class="spec-value">1800 м</span>
+                            </div>
+                        </div>
+                        <div class="product-price">89 999 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
 
-    <script src="script.js"></script>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="ATN Thor 4">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">ATN Thor 4</h3>
+                        <p class="product-description">Тепловізійний приціл 4K з записом відео, балістичним калькулятором та GPS</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Роздільність:</span>
+                                <span class="spec-value">384x288</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Дальність:</span>
+                                <span class="spec-value">1300 м</span>
+                            </div>
+                        </div>
+                        <div class="product-price">65 500 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Hikmicro Thunder">
+                    </div>
+                    <div class="product-content">
+                        <span class="product-badge">НОВИНКА</span>
+                        <h3 class="product-title">Hikmicro Thunder</h3>
+                        <p class="product-description">Тепловізійний монокуляр з Wi-Fi, можливістю запису та потокової передачі</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Роздільність:</span>
+                                <span class="spec-value">640x512</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Дальність:</span>
+                                <span class="spec-value">1600 м</span>
+                            </div>
+                        </div>
+                        <div class="product-price">42 800 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="InfiRay Zoom 1">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">InfiRay Zoom 1</h3>
+                        <p class="product-description">Тепловізійний приціл з цифровим зумом та функцією розпізнавання цілі</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Роздільність:</span>
+                                <span class="spec-value">384x288</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Дальність:</span>
+                                <span class="spec-value">1100 м</span>
+                            </div>
+                        </div>
+                        <div class="product-price">38 900 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="FLIR Scout TK">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">FLIR Scout TK</h3>
+                        <p class="product-description">Портативний тепловізійний монокуляр для спостереження та пошуку в темряві</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Роздільність:</span>
+                                <span class="spec-value">160x120</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Дальність:</span>
+                                <span class="spec-value">550 м</span>
+                            </div>
+                        </div>
+                        <div class="product-price">25 600 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="AGM Taipan">
+                    </div>
+                    <div class="product-content">
+                        <span class="product-badge">АКЦІЯ</span>
+                        <h3 class="product-title">AGM Taipan</h3>
+                        <p class="product-description">Тепловізійний приціл з високою чутливістю та можливістю підключення до смартфона</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Роздільність:</span>
+                                <span class="spec-value">384x288</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Дальність:</span>
+                                <span class="spec-value">1200 м</span>
+                            </div>
+                        </div>
+                        <div class="product-price">47 300 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Night Vision -->
+    <section id="night-vision" class="section">
+        <div class="container">
+            <h2 class="section-title">Пристрої нічного бачення</h2>
+            <p class="section-subtitle">Сучасні технології для ефективного спостереження та навігації в умовах повної темряви</p>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1531315396756-905d68d21b56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Armasight Nyx-14">
+                    </div>
+                    <div class="product-content">
+                        <span class="product-badge">ХІТ</span>
+                        <h3 class="product-title">Armasight Nyx-14</h3>
+                        <p class="product-description">Монокуляр нічного бачення 1-го покоління з ІЧ-підсвічуванням</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Покоління:</span>
+                                <span class="spec-value">1+</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Дальність:</span>
+                                <span class="spec-value">200 м</span>
+                            </div>
+                        </div>
+                        <div class="product-price">22 500 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="ATN PS15-3">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">ATN PS15-3</h3>
+                        <p class="product-description">Бінокль нічного бачення 2-го покоління з широким кутом огляду</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Покоління:</span>
+                                <span class="spec-value">2</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Дальність:</span>
+                                <span class="spec-value">350 м</span>
+                            </div>
+                        </div>
+                        <div class="product-price">45 800 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1531315396756-905d68d21b56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pulsar Edge GS">
+                    </div>
+                    <div class="product-content">
+                        <span class="product-badge">НОВИНКА</span>
+                        <h3 class="product-title">Pulsar Edge GS</h3>
+                        <p class="product-description">Тепловізійний монокуляр з можливістю запису відео та фото</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Покоління:</span>
+                                <span class="spec-value">Digital</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Дальність:</span>
+                                <span class="spec-value">500 м</span>
+                            </div>
+                        </div>
+                        <div class="product-price">32 700 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Night Owl Nexgen">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Night Owl Nexgen</h3>
+                        <p class="product-description">Монокуляр нічного бачення з цифровим зумом та записом відео</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Покоління:</span>
+                                <span class="spec-value">Digital</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Дальність:</span>
+                                <span class="spec-value">250 м</span>
+                            </div>
+                        </div>
+                        <div class="product-price">18 900 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1531315396756-905d68d21b56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Yukon Tracker">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Yukon Tracker</h3>
+                        <p class="product-description">Приціл нічного бачення для мисливства з ІЧ-підсвічувачем</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Покоління:</span>
+                                <span class="spec-value">1+</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Дальність:</span>
+                                <span class="spec-value">300 м</span>
+                            </div>
+                        </div>
+                        <div class="product-price">27 400 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sightmark Wraith">
+                    </div>
+                    <div class="product-content">
+                        <span class="product-badge">АКЦІЯ</span>
+                        <h3 class="product-title">Sightmark Wraith</h3>
+                        <p class="product-description">Цифровий приціл нічного бачення 4K з записом та Wi-Fi</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Покоління:</span>
+                                <span class="spec-value">Digital</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Дальність:</span>
+                                <span class="spec-value">400 м</span>
+                            </div>
+                        </div>
+                        <div class="product-price">35 200 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Binoculars -->
+    <section id="binoculars" class="section" style="background-color: #f1f3f5;">
+        <div class="container">
+            <h2 class="section-title">Біноклі</h2>
+            <p class="section-subtitle">Якісні біноклі для мисливства, туризму, спостереження за природою та інших цілей</p>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1576797980898-2d57d7c96c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Steiner Commander">
+                    </div>
+                    <div class="product-content">
+                        <span class="product-badge premium">ПРЕМІУМ</span>
+                        <h3 class="product-title">Steiner Commander</h3>
+                        <p class="product-description">Бінокль 10x50 з азотним заповненням та захистом від вологи</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Збільшення:</span>
+                                <span class="spec-value">10x</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Об'єктив:</span>
+                                <span class="spec-value">50 мм</span>
+                            </div>
+                        </div>
+                        <div class="product-price">25 800 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vortex Diamondback">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Vortex Diamondback</h3>
+                        <p class="product-description">Бінокль 8x42 з просвітленими лінзами та міцним конструкцією</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Збільшення:</span>
+                                <span class="spec-value">8x</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Об'єктив:</span>
+                                <span class="spec-value">42 мм</span>
+                            </div>
+                        </div>
+                        <div class="product-price">12 300 грн</div>
+                        <button class="btn-buy">Замовити</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#sights">Приціли</a>
+                <a href="#thermal">Тепловізори</a>
+                <a href="#night-vision">Нічне бачення</a>
+                <a href="#binoculars">Біноклі</a>
+                <a href="#contacts">Контакти</a>
+            </div>
+            <p class="copyright">© 2023 Зеніт — Оптика та Техніка. Всі права захищені.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.btn-buy').forEach(button => {
+            button.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('.product-title').textContent;
+                const productPrice = productCard.querySelector('.product-price').textContent;
+                
+                alert(`Додано до кошика: ${productName}\nЦіна: ${productPrice}`);
+            });
+        });
+    </script>
 </body>
 </html>
