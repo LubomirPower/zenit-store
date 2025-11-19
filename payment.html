@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доставка та Оплата — Зеніт</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Тут буде той самий CSS з main сторінки */
+        :root {
+            --primary: #0A174E;
+            --secondary: #1D267D;
+            --accent: #F5B841;
+            --dark: #0D1B2A;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --success: #2ECC71;
+            --danger: #E63946;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header - той самий стиль */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 23, 78, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 18px 0;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ... решта CSS з основної сторінки ... */
+
+        /* Специфічні стилі для сторінки оплати */
+        .delivery-hero {
+            background: linear-gradient(135deg, rgba(10, 23, 78, 0.9) 0%, rgba(29, 38, 125, 0.9) 100%);
+            color: white;
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .step-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .payment-method {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .payment-method:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .delivery-info {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">3</div>
+                    <div class="logo-text">Зеніт</div>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Головна</a>
+                    <a href="index.html#sights">Приціли</a>
+                    <a href="index.html#thermal">Тепловізори</a>
+                    <a href="payment.html" class="btn-primary">Доставка</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Delivery Hero -->
+    <section class="delivery-hero">
+        <div class="container">
+            <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px;">Доставка та Оплата</h1>
+            <p style="font-size: 1.3rem; opacity: 0.9;">Швидка та зручна доставка по всій Україні</p>
+        </div>
+    </section>
+
+    <!-- Delivery Steps -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Як замовити</h2>
+                <p class="section-subtitle">Простий процес замовлення всього за 3 кроки</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h3 style="margin-bottom: 15px; color: var(--primary);">Оформлення замовлення</h3>
+                    <p>Додайте товари до кошика та заповніть форму замовлення</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon"><i class="fas fa-credit-card"></i></div>
+                    <h3 style="margin-bottom: 15px; color: var(--primary);">Оплата</h3>
+                    <p>Оберіть зручний спосіб оплати онлайн або при отриманні</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon"><i class="fas fa-shipping-fast"></i></div>
+                    <h3 style="margin-bottom: 15px; color: var(--primary);">Доставка</h3>
+                    <p>Отримайте ваше замовлення в найближчому відділенні або кур'єром</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="section" style="background: var(--light);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Способи оплати</h2>
+                <p class="section-subtitle">Оберіть найзручніший для вас спосіб оплати</p>
+            </div>
+
+            <div class="payment-methods">
+                <div class="payment-method">
+                    <div style="font-size: 3rem; color: var(--success); margin-bottom: 15px;">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3 style="margin-bottom: 10px;">Онлайн оплата</h3>
+                    <p>Безпечна оплата карткою Visa/Mastercard через платежну систему</p>
+                </div>
+
+                <div class="payment-method">
+                    <div style="font-size: 3rem; color: var(--primary); margin-bottom: 15px;">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3 style="margin-bottom: 10px;">Оплата при отриманні</h3>
+                    <p>Сплатіть готівкою або карткою при отриманні товару</p>
+                </div>
+
+                <div class="payment-method">
+                    <div style="font-size: 3rem; color: var(--accent); margin-bottom: 15px;">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 style="margin-bottom: 10px;">Google Pay/Apple Pay</h3>
+                    <p>Швидка оплата через ваш смартфон</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Information -->
+    <section class="section">
+        <div class="container">
+            <div class="delivery-info">
+                <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">Інформація про доставку</h2>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-truck"></i></div>
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Нова Пошта</h4>
+                            <p>Доставка по всій Україні. Термін: 1-3 дні. Вартість: від 50₴</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-shipping-fast"></i></div>
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Кур'єрська доставка</h4>
+                            <p>Доставка кур'єром у вашому місті. Термін: 1-2 дні</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-store"></i></div>
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Самовивіз</h4>
+                            <p>Заберіть замовлення з нашого магазину в Києві</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-globe-europe"></i></div>
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Міжнародна доставка</h4>
+                            <p>Доставка по Європі. Термін: 3-7 днів</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" style="background: var(--light);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Часті запитання</h2>
+                <p class="section-subtitle">Відповіді на найпопулярніші питання</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: white; padding: 25px; border-radius: var(--radius); margin-bottom: 20px; box-shadow: var(--shadow);">
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">Який термін доставки?</h4>
+                    <p>Доставка займає 1-3 дні по Україні. У великих містах можлива доставка протягом 24 годин.</p>
+                </div>
+
+                <div style="background: white; padding: 25px; border-radius: var(--radius); margin-bottom: 20px; box-shadow: var(--shadow);">
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">Чи є можливість повернення?</h4>
+                    <p>Так, ви можете повернути товар протягом 14 днів з моменту отримання.</p>
+                </div>
+
+                <div style="background: white; padding: 25px; border-radius: var(--radius); margin-bottom: 20px; box-shadow: var(--shadow);">
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">Чи безпечна онлайн оплата?</h4>
+                    <p>Так, всі платежі захищені SSL-шифруванням. Ми не зберігаємо дані вашої картки.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Додайте футер з основної сторінки -->
+</body>
+</html>
